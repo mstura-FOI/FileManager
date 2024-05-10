@@ -1,0 +1,17 @@
+# Ignore compiled files
+*.class
+*.jar
+*.war
+src/
+dist/
+# Ignore build directories
+target/
+bin/
+
+# Ignore IDE-specific files
+.idea/
+.vscode/
+
+# Ignore JavaScript specific files
+node_modules/
+package-lock.json
