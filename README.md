@@ -1,7 +1,9 @@
+## Installation
 To install this package use
 ```cli
 npm i filemanageriojs
 ```
+# Use
 This package is using fs library under the hood, but its abstracting the functionalities for ease of use.
 For working with this file you have to import it with
 ```javascript
@@ -49,6 +51,7 @@ File {
   numberOfCharacters: 5
 }
 ```
+## JSON OBJECT MANIPULATION
 Working with objects JSON
 Creating a json file for storing users
 ```javascript
