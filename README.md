@@ -7,7 +7,7 @@ npm i filemanageriojs
 This package is using fs library under the hood, but its abstracting the functionalities for ease of use.
 For working with this file you have to import it with
 ```javascript
-var FileBuilder = require('filemanageriojs/FileManagerBuilder.js')
+const FileBuilder = require('filemanageriojs')
 var file = new FileBuilder()
 ```
 Then you are all set to read and create files.
@@ -60,7 +60,7 @@ var users = [{
     age: 25,
     email: "johndoe@gmail.com"
 }];
-var jsonFile = File.setName("Users").setPath("./users").setExtension("json").setContent(JSON.stringify(users)).create();
+var jsonFile = File.setName("Users").setPath("./users").setExtension("json").setContent(`${JSON.stringify(users)}`).create();
 ```
 Reading the file and manipulating with the data
 ```javascript
