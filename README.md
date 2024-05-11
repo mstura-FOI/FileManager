@@ -49,4 +49,56 @@ File {
   numberOfCharacters: 5
 }
 ```
-Working with objects inside js
+Working with objects JSON
+Creating a json file for storing users
+```javascript
+var users = [{
+    name: "John Doe",
+    age: 25,
+    email: "johndoe@gmail.com"
+}];
+var jsonFile = File.setName("Users").setPath("./users").setExtension("json").setContent(JSON.stringify(users)).create();
+```
+Reading the file and manipulating with the data
+```javascript
+var file = File.setName("Users").setPath("./users").setExtension("json").read();
+file.then((file) => {
+    var content = JSON.parse(file.content);
+    content.push({
+        name: "Jane Doe",
+        age: 24,
+        email: ""
+    })
+    File.updateObject(content); //Hydrate the file with newest data
+}).catch((error) => {
+    console.error(error);
+});
+```
+We get the following file 
+```json
+[{
+    "name": "John Doe",
+    "age": 25,
+    "email": "johndoe@gmail.com"
+},
+{
+    "name": "Jane Doe",
+    "age": 24,
+    "email": ""
+}]
+```
+For deleting use.
+```javascript
+var file = File.setName("Users").setPath("./users").setExtension("json").read();
+file.then((file) => {
+    var content = JSON.parse(file.content);
+    content.pop()
+    File.updateObject(content); //Hydrate the file with newest data
+
+}).catch((error) => {
+    console.error(error);
+});
+// OR
+File.deleteObjectAtIndex(1) 
+```
+Using pop will delete the last element in the array while deleteObjectAtIndex(index) will delete the element at index. 
