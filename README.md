@@ -25,7 +25,8 @@ File {
   extension: 'ts',
   size: undefined,
   content: 'Its me',
-  allPath: undefined
+  allPath: undefined,
+  numberOfCharacters: 5
 }
 ```
 To read files you can use
@@ -43,7 +44,9 @@ File {
   path: 'path/to/file',
   extension: 'ts',
   size: undefined,
-  content: 'hellohelloIts mehellohelloIts me',
-  allPath: 'path/to/file/file.ts'
+  content: 'Its me',
+  allPath: 'path/to/file/file.ts',
+  numberOfCharacters: 5
 }
 ```
+Working with objects inside js

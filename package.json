@@ -1,10 +1,10 @@
 {
-  "name": "filemanager",
-  "version": "1.0.0",
+  "name": "filemanageriojs",
+  "version": "1.0.2",
   "description": "File manager system for abstracting handling with files with fs system",
   "main": "index.js",
   "scripts": {
-    "build": "babel src -d dist",
+    "build": "node index.js",
     "prepublishOnly": "npm run build"
   },
   "author": "mstura21",

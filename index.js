@@ -5,6 +5,6 @@ class File{
     size;
     content;
     allPath;
-
+    numberOfCharacters;
 }
 module.exports = File;

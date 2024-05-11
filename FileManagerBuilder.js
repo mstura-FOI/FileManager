@@ -1,9 +1,8 @@
 var fs = require('fs');
 var File = require('./index.js');
 class FileManagerBuilder{
-    
     file
-    constructor(hellos){
+    constructor(){
         this.file = new File();
     }
     setName(name){
@@ -24,8 +23,44 @@ class FileManagerBuilder{
     }
     setContent(content){
         this.file.content = content;
+        this.file.numberOfCharacters = content.length;
         return this;
      }
+    updateObject(json){
+        try {
+            this.removeFile();
+            this.setContent(JSON.stringify(json));
+            this.create();
+        } catch (error) {
+            console.error('Error updating object:', error);
+        }
+       
+    }
+    deleteObjectAtIndex(index){
+        try {
+            var data = JSON.parse(this.file.content);   
+            data.splice(index, 1);
+            this.updateObject(data);
+        } catch (error) {
+            console.error('Error deleting object:', error);
+        }
+        
+    }
+    removeFile(){
+        var directory = `${this.file.path}/${this.file.name}.${this.file.extension}`;
+        fs.access(directory, fs.constants.F_OK, (err) => {
+            if (err) {
+                console.error('File does not exist');
+                return;
+            }
+            fs.unlink(directory, (err) => {
+                if (err) {
+                    console.error('Error removing file:', err);
+                    return;
+                }
+            });
+        });
+    }
    async create(){
         var directory = `${this.file.path}/${this.file.name}.${this.file.extension}`;
         var pathToCreate = `${this.file.path}`;
@@ -53,6 +88,7 @@ class FileManagerBuilder{
             
             const data = await fs.readFileSync(directory,{ encoding: 'utf8' });
             this.file.content = await data;
+            this.file.numberOfCharacters = await data.length;
             return this.file;
         } catch (error) {
             if (error.code === 'ENOENT') {
